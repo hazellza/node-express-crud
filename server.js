@@ -87,7 +87,7 @@ app.get('/ordersSell', function (req, res, next) {
 })
 
 app.get('/ordersSell/:orderID', function (req, res, next) {
-  const userId = req.params.userId;
+  const orderID = req.params.userId;
   connection.query(
     'SELECT * FROM `ordersSell` WHERE `orderID` = ?',
     [orderID],
