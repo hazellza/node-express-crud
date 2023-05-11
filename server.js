@@ -64,15 +64,15 @@ app.delete('/users', function (req, res, next) {
   );
 })
 
-app.post('/login', function (req, res, next) {
-  connection.query(
-    'SELECT * FROM `users` WHERE username = ? and password = ?',
-    [req.body.username, req.body.password],
-    function(err, results) {
-      res.json(results);
-    }
-  );
-})
+// app.post('/login', function (req, res, next) {
+//   connection.query(
+//     'SELECT * FROM `users` WHERE username = ? and password = ?',
+//     [req.body.username, req.body.password],
+//     function(err, results) {
+//       res.json(results);
+//     }
+//   );
+// })
 
 // car
 
