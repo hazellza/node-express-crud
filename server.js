@@ -126,6 +126,36 @@ app.delete('/ordersSell', function (req, res, next) {
     }
   );
 })
+
+const jwt = require('jsonwebtoken');
+app.post('/login', function (req, res, next) {
+  const username = req.body.username;
+  const password = req.body.password;
+
+  connection.query(
+    'SELECT * FROM users WHERE username = ? AND password = ?',
+    [username, password],
+    function(err, results) {
+      if (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Failed to login' });
+        return;
+      }
+
+      if (results.length === 0) {
+        res.status(401).json({ error: 'Invalid username or password' });
+        return;
+      }
+
+      // สร้าง Token ด้วย JWT
+      const token = jwt.sign({ username }, 'secret_key');
+
+      // ส่ง Token กลับไปยัง Frontend
+      res.json({ message: 'Login successful', token });
+    }
+  );
+});
+
   
 app.listen(5000, function () {
   console.log('CORS-enabled web server listening on port 5000')
