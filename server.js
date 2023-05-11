@@ -127,10 +127,10 @@ app.delete('/ordersSell', function (req, res, next) {
   );
 })
 
-const jwt = require('jsonwebtoken');
-app.post('/login', function (req, res, next) {
-  const username = req.body.username;
-  const password = req.body.password;
+// const jwt = require('jsonwebtoken');
+// app.post('/login', function (req, res, next) {
+//   const username = req.body.username;
+//   const password = req.body.password;
 
   connection.query(
     'SELECT * FROM users WHERE username = ? AND password = ?',
@@ -154,7 +154,7 @@ app.post('/login', function (req, res, next) {
       res.json({ message: 'Login successful', token });
     }
   );
-});
+// });
 
   
 app.listen(5000, function () {
