@@ -64,17 +64,17 @@ app.delete('/users', function (req, res, next) {
   );
 })
 
-// app.post('/login', function (req, res, next) {
-//   connection.query(
-//     'SELECT * FROM `users` WHERE username = ? and password = ?',
-//     [req.body.username, req.body.password],
-//     function(err, results) {
-//       res.json(results);
-//     }
-//   );
-// })
+app.post('/login', function (req, res, next) {
+  connection.query(
+    'SELECT * FROM `users` WHERE username = ? and password = ?',
+    [req.body.username, req.body.password],
+    function(err, results) {
+      res.json(results);
+    }
+  );
+})
 
-// car
+
 
 
 app.get('/ordersSell', function (req, res, next) {
@@ -132,28 +132,28 @@ app.delete('/ordersSell', function (req, res, next) {
 //   const username = req.body.username;
 //   const password = req.body.password;
 
-  connection.query(
-    'SELECT * FROM users WHERE username = ? AND password = ?',
-    [username, password],
-    function(err, results) {
-      if (err) {
-        console.error(err);
-        res.status(500).json({ error: 'Failed to login' });
-        return;
-      }
+  // connection.query(
+  //   'SELECT * FROM users WHERE username = ? AND password = ?',
+  //   [username, password],
+  //   function(err, results) {
+  //     if (err) {
+  //       console.error(err);
+  //       res.status(500).json({ error: 'Failed to login' });
+  //       return;
+  //     }
 
-      if (results.length === 0) {
-        res.status(401).json({ error: 'Invalid username or password' });
-        return;
-      }
+  //     if (results.length === 0) {
+  //       res.status(401).json({ error: 'Invalid username or password' });
+  //       return;
+  //     }
 
-      // สร้าง Token ด้วย JWT
-      const token = jwt.sign({ username }, 'secret_key');
+  //     // สร้าง Token ด้วย JWT
+  //     const token = jwt.sign({ username }, 'secret_key');
 
-      // ส่ง Token กลับไปยัง Frontend
-      res.json({ message: 'Login successful', token });
-    }
-  );
+  //     // ส่ง Token กลับไปยัง Frontend
+  //     res.json({ message: 'Login successful', token });
+  //   }
+  // );
 // });
 
   
